@@ -1,0 +1,87 @@
+[
+  {
+    "template_id": "fuji-ridge-01",
+    "nama": "Fuji Ridge",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-fuji-ridge-01",
+      "template_id": "fuji-ridge-01",
+      "nama_desain": "Fuji Ridge",
+      "bahan": "milano",
+      "kerah": true,
+      "warna_dasar": "#1B2A41",
+      "layers": [
+        { "motif": "fuji-ridge", "warna": "#F2F2F2", "seed": 42, "kerapatan": 0.6, "sudut": 15, "skala": 1.0, "opacity": 0.9 },
+        { "motif": "contour-peak", "warna": "#E63946", "seed": 7, "kerapatan": 0.3, "sudut": 0, "skala": 1.4, "opacity": 0.5 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "gradasi", "warna1": "#FFFFFF", "warna2": "#E6E8EB", "sudut": 90, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
+    "template_id": "contour-peak-01",
+    "nama": "Contour Peak",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-contour-peak-01",
+      "template_id": "contour-peak-01",
+      "nama_desain": "Contour Peak",
+      "bahan": "microcool",
+      "kerah": false,
+      "warna_dasar": "#0F1923",
+      "layers": [
+        { "motif": "contour-peak", "warna": "#E63946", "seed": 12, "kerapatan": 0.5, "sudut": 10, "skala": 1.2, "opacity": 0.8 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "polos", "warna1": "#F5F5F5", "warna2": "#F5F5F5", "sudut": 0, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
+    "template_id": "mocha-dust-01",
+    "nama": "Mocha Dust",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-mocha-dust-01",
+      "template_id": "mocha-dust-01",
+      "nama_desain": "Mocha Dust",
+      "bahan": "emboss",
+      "kerah": true,
+      "warna_dasar": "#3D2B1F",
+      "layers": [
+        { "motif": "mocha-dust", "warna": "#C4A882", "seed": 33, "kerapatan": 0.7, "sudut": 0, "skala": 1.0, "opacity": 0.85 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "gradasi", "warna1": "#F8F0E8", "warna2": "#E0D0C0", "sudut": 135, "gambar": null },
+      "video": { "aktif": false, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
+    "template_id": "merah-putih-01",
+    "nama": "Merah Putih Ridge",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-merah-putih-01",
+      "template_id": "merah-putih-01",
+      "nama_desain": "Merah Putih Ridge",
+      "bahan": "milano",
+      "kerah": true,
+      "warna_dasar": "#CC0000",
+      "layers": [
+        { "motif": "fuji-ridge", "warna": "#FFFFFF", "seed": 21, "kerapatan": 0.4, "sudut": -10, "skala": 1.1, "opacity": 0.95 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "polos", "warna1": "#FFFFFF", "warna2": "#FFFFFF", "sudut": 0, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  }
+]

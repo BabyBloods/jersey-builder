@@ -1,0 +1,19 @@
+# Dependencies & build outputs
+node_modules/
+dist/
+dist-ssr/
+
+# Large binary assets
+public/*.glb
+public/*.gltf
+
+# Lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Logs & temp
+*.log
+logs/
+.temp/
+.cache/
