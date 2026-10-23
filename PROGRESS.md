@@ -50,23 +50,21 @@
 
 ---
 
-## 2. Sedang Dikerjakan / Pending Review
-- [x] Investigasi & eliminasi celah robekan ketiak pada model lengan panjang (mempertahankan 10.513 vertex badan & ketiak asli dari `shirt_baked.glb` tanpa peregangan paksa). ✅
-- [x] Rekonstruksi geometri lengan bawah 3D penuh berkesinambungan (`generate_perfect_long_sleeve.cjs` -> `public/shirt_long_sleeve.glb` dan `dist/shirt_long_sleeve.glb`) dengan volume silindris anatomis, manset pergelangan, dan inward hem lip. ✅
-- [x] Perbaikan winding order segitiga (outward-facing normals) pada forearm kiri & kanan agar pencahayaan PBR dan culling rendering sempurna. ✅
-- [x] Eliminasi tuntas mesh tabrakan (placeholder 45° silinder dinonaktifkan sepenuhnya saat GLB aktif). ✅
-- [x] Relief emboss diperhalus menjadi micro-relief intan geometris (skala 36x36, normalScale 0.40). ✅
-- [ ] Review langsung di live browser oleh user pada sesi besok (`http://localhost:5173/`). 🚧
+## 2. Sedang Dikerjakan / Selesai Sesi Ini
+- [x] Full Dockerization: Web app berjalan 100% di container Docker (`docker compose up dev` di port 5173 dan `prod` Nginx di port 8080). ✅
+- [x] Lengan Panjang Single Seamless Sleeve (Gambar 5): Rekonstruksi model 3D via Dijkstra geodesic anchor (`generate_true_long_sleeve.cjs`) — 300+ simpul ketiak & bahu 100% terkunci diam (zero robekan ketiak), dan lengan bawah memanjang mulus menyatu tanpa manset lengan pendek di tengah (tidak ada lagi efek baju dobel/undershirt). ✅
+- [x] Kerah V-Neck Bersih & Rapi (Gambar 3): Menghilangkan lekukan kawah/dent tajam di panel dada. V-Neck kini melengkung anggun dan natural mengikuti tepi lingkar leher depan atletis. ✅
+- [x] Kerah Round Neck Sempurna (Gambar 4): Mempertahankan kerah pita bulat elastis melingkar bawaan GLB yang simetris dan rapi. ✅
+- [x] Template Preset Baru "Stardust Meteor" (Gambar 3, 4, 5): Implementasi motif prosedural `meteor-shower` dengan jejak hujan meteor vertikal bergradien, kepala meteor bercahaya putih/cyan, taburan bintang berlian 4-sudut (✦), dan debu kosmik stardust di latar midnight blue `#141C2B`. ✅
+- [x] Sinkronisasi Git & GitHub: Seluruh commit dan file Docker & model 3D terbaru ter-push ke repository `BabyBloods/jersey-builder`. ✅
 
 ---
 
-## 3. Rencana Tindak Lanjut Sesi Berikutnya (Besok)
-1. **Verifikasi Visual Lengan Panjang Baru**:
-   - Pengujian opsi "Lengan Panjang" di browser pengguna untuk memastikan ketiak tertutup rapat 100% dan pergelangan tangan memiliki volume tabung 3D kain yang rapi.
-2. **Penyelarasan UV Map Forearm**:
-   - Evaluasi kelanjutan garis motif (seperti garis merah/putih pada template Fuji Ridge) dari lengan atas ke forearm lengan panjang.
-3. **Penyempurnaan Akhir UI/UX**:
-   - Finalisasi switch antara model lengan pendek & panjang serta variasi kerah Ribbon & V-Neck.
+## 3. Rencana Tindak Lanjut Sesi Berikutnya
+1. **Pengetesan Interaktif User**:
+   - Pengujian live di browser `http://localhost:5173` untuk opsi Lengan Pendek vs Lengan Panjang dan switch Kerah V-Neck vs Round Neck.
+2. **Kustomisasi Badge Logo & Warna**:
+   - Menambahkan opsi logo kustom atau preset lambang grafis atletis pada dada kanan/kiri sesuai referensi mockup.
 
 ---
 
