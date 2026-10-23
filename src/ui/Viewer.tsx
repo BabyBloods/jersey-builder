@@ -183,12 +183,13 @@ function applyJerseyDeformations(
         y = Math.min(y, 0.215)
       }
     } else if (tipeKerah === 'vneck') {
-      // V-Neck atletis: lekukan V proporsional di depan dada
-      if (z > 0.035 && Math.abs(x) < 0.045 && y > 0.18 && y < 0.24) {
-        const vFactor = Math.max(0, 1.0 - Math.abs(x) / 0.045)
-        const dip = vFactor * vFactor * 0.032 // Dip 3.2cm ke bawah
+      // V-Neck atletis bersih (Gambar 3): lekukan V rapi hanya pada rim kerah & bibir leher depan,
+      // TANPA merusak atau membuat kawah/dent pada kain dada
+      if (z > 0.048 && Math.abs(x) < 0.050 && y >= 0.198 && y < 0.235) {
+        const vFactor = Math.max(0, 1.0 - Math.abs(x) / 0.048)
+        const dip = Math.pow(vFactor, 1.1) * 0.013 // Dip anggun 1.3cm di pusat
         y -= dip
-        z -= vFactor * 0.006 // Condong sedikit ke dalam
+        z -= vFactor * 0.003
       }
     }
 

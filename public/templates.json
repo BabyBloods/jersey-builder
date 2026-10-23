@@ -1,5 +1,74 @@
 [
   {
+    "template_id": "stardust-vneck-01",
+    "nama": "Stardust Meteor (V-Neck)",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-stardust-vneck-01",
+      "template_id": "stardust-vneck-01",
+      "nama_desain": "Stardust Meteor (V-Neck)",
+      "bahan": "milano",
+      "kerah": true,
+      "tipe_kerah": "vneck",
+      "lengan_panjang": false,
+      "warna_dasar": "#141C2B",
+      "layers": [
+        { "motif": "meteor-shower", "warna": "#FFFFFF", "seed": 101, "kerapatan": 1.15, "sudut": 0, "skala": 1.0, "opacity": 0.95 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "gradasi", "warna1": "#1F2937", "warna2": "#0F172A", "sudut": 135, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
+    "template_id": "stardust-round-01",
+    "nama": "Stardust Meteor (Round Neck)",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-stardust-round-01",
+      "template_id": "stardust-round-01",
+      "nama_desain": "Stardust Meteor (Round Neck)",
+      "bahan": "milano",
+      "kerah": true,
+      "tipe_kerah": "ribbon",
+      "lengan_panjang": false,
+      "warna_dasar": "#141C2B",
+      "layers": [
+        { "motif": "meteor-shower", "warna": "#FFFFFF", "seed": 101, "kerapatan": 1.15, "sudut": 0, "skala": 1.0, "opacity": 0.95 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "gradasi", "warna1": "#1F2937", "warna2": "#0F172A", "sudut": 135, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
+    "template_id": "stardust-long-01",
+    "nama": "Stardust Meteor (Lengan Panjang)",
+    "thumbnail": null,
+    "desain": {
+      "id": "template-stardust-long-01",
+      "template_id": "stardust-long-01",
+      "nama_desain": "Stardust Meteor (Lengan Panjang)",
+      "bahan": "milano",
+      "kerah": true,
+      "tipe_kerah": "vneck",
+      "lengan_panjang": true,
+      "warna_dasar": "#141C2B",
+      "layers": [
+        { "motif": "meteor-shower", "warna": "#FFFFFF", "seed": 101, "kerapatan": 1.15, "sudut": 0, "skala": 1.0, "opacity": 0.95 }
+      ],
+      "gambar_import": null,
+      "logo": null,
+      "latar": { "tipe": "gradasi", "warna1": "#1F2937", "warna2": "#0F172A", "sudut": 135, "gambar": null },
+      "video": { "aktif": true, "durasi": 6, "fps": 30, "resolusi": "1080x1080", "angin": 0 },
+      "output": { "resolusi": 2048 }
+    }
+  },
+  {
     "template_id": "fuji-ridge-01",
     "nama": "Fuji Ridge",
     "thumbnail": null,

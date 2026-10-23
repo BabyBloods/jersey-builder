@@ -39,6 +39,54 @@ interface TemplatePreset {
 
 export const TEMPLATE_PRESETS: TemplatePreset[] = [
   {
+    id: 'stardust-vneck-01',
+    nama: 'Stardust Meteor (V-Neck)',
+    kategori: 'premium',
+    isNew: true,
+    lengan_panjang: false,
+    tipe_kerah: 'vneck',
+    warna_dasar: '#141C2B',
+    bahan: 'milano',
+    kerah: true,
+    accentColor: '#38BDF8',
+    latar: { tipe: 'gradasi', warna1: '#1F2937', warna2: '#0F172A', sudut: 135 },
+    layers: [
+      { id: 'l1', motif: 'meteor-shower', warna: '#FFFFFF', seed: 101, kerapatan: 1.15, sudut: 0, skala: 1.0, opacity: 0.95 },
+    ],
+  },
+  {
+    id: 'stardust-round-01',
+    nama: 'Stardust Meteor (Round Neck)',
+    kategori: 'premium',
+    isNew: true,
+    lengan_panjang: false,
+    tipe_kerah: 'ribbon',
+    warna_dasar: '#141C2B',
+    bahan: 'milano',
+    kerah: true,
+    accentColor: '#38BDF8',
+    latar: { tipe: 'gradasi', warna1: '#1F2937', warna2: '#0F172A', sudut: 135 },
+    layers: [
+      { id: 'l1', motif: 'meteor-shower', warna: '#FFFFFF', seed: 101, kerapatan: 1.15, sudut: 0, skala: 1.0, opacity: 0.95 },
+    ],
+  },
+  {
+    id: 'stardust-long-01',
+    nama: 'Stardust Meteor (Lengan Panjang)',
+    kategori: 'premium',
+    isNew: true,
+    lengan_panjang: true,
+    tipe_kerah: 'vneck',
+    warna_dasar: '#141C2B',
+    bahan: 'milano',
+    kerah: true,
+    accentColor: '#38BDF8',
+    latar: { tipe: 'gradasi', warna1: '#1F2937', warna2: '#0F172A', sudut: 135 },
+    layers: [
+      { id: 'l1', motif: 'meteor-shower', warna: '#FFFFFF', seed: 101, kerapatan: 1.15, sudut: 0, skala: 1.0, opacity: 0.95 },
+    ],
+  },
+  {
     id: 'fuji-ridge-01',
     nama: 'Fuji Ridge (Pendek)',
     kategori: 'premium',
@@ -302,30 +350,78 @@ function TemplatePreviewCanvas({
     ctx.closePath()
     ctx.fill()
 
-    // Accent stripes dari layer[0]
-    ctx.globalAlpha = 0.7
-    ctx.strokeStyle = template.accentColor
-    ctx.lineWidth = 2
-    const angleRad = ((template.layers[0]?.sudut || 15) * Math.PI) / 180
-    const step = 12
-    for (let i = -H; i < W + H; i += step) {
-      ctx.beginPath()
-      ctx.moveTo(i + Math.cos(angleRad) * H, 0)
-      ctx.lineTo(i - Math.cos(angleRad) * H, H)
-      ctx.stroke()
-    }
+    if (template.layers[0]?.motif === 'meteor-shower') {
+      // ── Render Khusus Meteor Shower / Stardust pada Thumbnail (Gambar 3 - 5) ──
+      ctx.save()
+      const rng = (seed: number) => {
+        let s = seed
+        return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646 }
+      }
+      const r = rng(101)
 
-    // Layer 2 accent jika ada
-    if (template.layers[1]) {
-      ctx.globalAlpha = 0.4
-      ctx.strokeStyle = template.layers[1].warna
-      ctx.lineWidth = 1
-      const step2 = 28
-      for (let i = -H; i < W + H; i += step2) {
+      // Meteor trails vertikal
+      for (let i = 0; i < 22; i++) {
+        const x = W * (0.20 + r() * 0.60)
+        const y1 = H * (0.15 + r() * 0.25)
+        const len = H * (0.25 + r() * 0.40)
+        const y2 = Math.min(H * 0.88, y1 + len)
+        const isCyan = r() > 0.6
+
+        ctx.strokeStyle = isCyan ? 'rgba(125, 211, 252, 0.85)' : 'rgba(255, 255, 255, 0.90)'
+        ctx.lineWidth = 1.2 + r() * 1.5
         ctx.beginPath()
-        ctx.moveTo(i + Math.sin(angleRad + 0.8) * H, 0)
-        ctx.lineTo(i - Math.sin(angleRad + 0.8) * H, H)
+        ctx.moveTo(x, y1)
+        ctx.lineTo(x, y2)
         ctx.stroke()
+
+        // Glowing dot di kepala meteor
+        ctx.fillStyle = isCyan ? '#BAE6FD' : '#FFFFFF'
+        ctx.beginPath()
+        ctx.arc(x, y2, ctx.lineWidth * 1.2, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      // Sparkles ✦
+      ctx.fillStyle = '#FFFFFF'
+      for (let i = 0; i < 14; i++) {
+        const sx = W * (0.22 + r() * 0.56)
+        const sy = H * (0.18 + r() * 0.35)
+        const sz = 2.5 + r() * 3.5
+        ctx.beginPath()
+        ctx.moveTo(sx, sy - sz)
+        ctx.quadraticCurveTo(sx, sy, sx + sz, sy)
+        ctx.quadraticCurveTo(sx, sy, sx, sy + sz)
+        ctx.quadraticCurveTo(sx, sy, sx - sz, sy)
+        ctx.quadraticCurveTo(sx, sy, sx, sy - sz)
+        ctx.fill()
+      }
+      ctx.restore()
+    } else {
+      // Accent stripes standar dari layer[0]
+      ctx.globalAlpha = 0.7
+      ctx.strokeStyle = template.accentColor
+      ctx.lineWidth = 2
+      const angleRad = ((template.layers[0]?.sudut || 15) * Math.PI) / 180
+      const step = 12
+      for (let i = -H; i < W + H; i += step) {
+        ctx.beginPath()
+        ctx.moveTo(i + Math.cos(angleRad) * H, 0)
+        ctx.lineTo(i - Math.cos(angleRad) * H, H)
+        ctx.stroke()
+      }
+
+      // Layer 2 accent jika ada
+      if (template.layers[1]) {
+        ctx.globalAlpha = 0.4
+        ctx.strokeStyle = template.layers[1].warna
+        ctx.lineWidth = 1
+        const step2 = 28
+        for (let i = -H; i < W + H; i += step2) {
+          ctx.beginPath()
+          ctx.moveTo(i + Math.sin(angleRad + 0.8) * H, 0)
+          ctx.lineTo(i - Math.sin(angleRad + 0.8) * H, H)
+          ctx.stroke()
+        }
       }
     }
 

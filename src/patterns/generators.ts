@@ -17,6 +17,7 @@ export type MotifType =
   | 'mocha-dust'
   | 'moss-strata'
   | 'merah-putih-ridge'
+  | 'meteor-shower'
 
 export interface LayerParams {
   id: string
@@ -374,6 +375,122 @@ export function renderMerahPutihRidge(
 }
 
 /**
+ * 6. METEOR SHOWER / STARDUST (Gambar 3 - 5):
+ * Hujan meteor & gugusan bintang kosmik modern khas jersey atletis trail.
+ * - Garis-garis vertikal bercahaya putih & cyan dengan ujung kepala bulat bercahaya (shooting stars)
+ * - Taburan bintang 4-point diamond sparkle (✦) di dada & bahu
+ * - Partikel debu stardust halus bertebaran di langit kosmik
+ */
+export function renderMeteorShower(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  params: LayerParams,
+) {
+  const { seed, kerapatan, sudut, skala, opacity } = params
+  const rad = (sudut * Math.PI) / 180
+
+  ctx.save()
+
+  if (sudut !== 0) {
+    ctx.translate(width / 2, height / 2)
+    ctx.rotate(rad)
+    ctx.translate(-width / 2, -height / 2)
+  }
+
+  const rng = createRng(seed)
+
+  // 1. Taburan Partikel Stardust Kosmik
+  const numDust = Math.floor(160 * kerapatan)
+  for (let i = 0; i < numDust; i++) {
+    const x = rng() * width
+    const y = rng() * height * 0.90
+    const r = (0.7 + rng() * 1.8) * skala
+    const dotAlpha = (0.25 + rng() * 0.70) * opacity
+    const isCyan = rng() > 0.65
+
+    ctx.save()
+    ctx.fillStyle = isCyan ? '#7DD3FC' : '#FFFFFF'
+    ctx.globalAlpha = dotAlpha
+    ctx.beginPath()
+    ctx.arc(x, y, r, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+  }
+
+  // 2. Garis Hujan Meteor Vertikal (Vertical Falling Meteor Trails)
+  const numTrails = Math.floor(85 * kerapatan)
+  for (let i = 0; i < numTrails; i++) {
+    const x = rng() * width
+    const startY = height * (0.02 + rng() * 0.38)
+    const trailLen = height * (0.18 + rng() * 0.52) * skala
+    const endY = Math.min(height * 0.97, startY + trailLen)
+    const lineWidth = (1.2 + rng() * 2.2) * skala
+    const isCyan = rng() > 0.62
+    const rgbStr = isCyan ? '125, 211, 252' : '255, 255, 255'
+
+    // Gradien jejak cahaya: memudar di atas, menguat ke bawah
+    const grad = ctx.createLinearGradient(x, startY, x, endY)
+    grad.addColorStop(0, `rgba(${rgbStr}, 0)`)
+    grad.addColorStop(0.25, `rgba(${rgbStr}, 0.15)`)
+    grad.addColorStop(0.75, `rgba(${rgbStr}, 0.75)`)
+    grad.addColorStop(1, `rgba(${rgbStr}, 1.0)`)
+
+    ctx.save()
+    ctx.globalAlpha = opacity
+    ctx.strokeStyle = grad
+    ctx.lineWidth = lineWidth
+    ctx.lineCap = 'round'
+    ctx.beginPath()
+    ctx.moveTo(x, startY)
+    ctx.lineTo(x, endY)
+    ctx.stroke()
+
+    // Kepala meteor bercahaya (Luminous Head Dot)
+    const headRadius = (lineWidth * 1.05 + rng() * 1.4)
+    ctx.fillStyle = isCyan ? '#BAE6FD' : '#FFFFFF'
+    ctx.beginPath()
+    ctx.arc(x, endY, headRadius, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+  }
+
+  // 3. Bintang Berkilau 4-Sudut (4-Point Diamond Star Sparkles ✦)
+  const numStars = Math.floor(40 * kerapatan)
+  for (let i = 0; i < numStars; i++) {
+    const x = rng() * width
+    const y = height * (0.03 + rng() * 0.52)
+    const size = (4.5 + rng() * 9.5) * skala
+    const starAlpha = (0.50 + rng() * 0.50) * opacity
+    const isCyan = rng() > 0.68
+
+    ctx.save()
+    ctx.globalAlpha = starAlpha
+    ctx.fillStyle = isCyan ? '#7DD3FC' : '#FFFFFF'
+
+    // Gambar 4-point diamond flare
+    ctx.beginPath()
+    ctx.moveTo(x, y - size)
+    ctx.quadraticCurveTo(x, y, x + size, y)
+    ctx.quadraticCurveTo(x, y, x, y + size)
+    ctx.quadraticCurveTo(x, y, x - size, y)
+    ctx.quadraticCurveTo(x, y, x, y - size)
+    ctx.closePath()
+    ctx.fill()
+
+    // Titik pusat putih intens
+    ctx.fillStyle = '#FFFFFF'
+    ctx.beginPath()
+    ctx.arc(x, y, Math.max(1, size * 0.22), 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.restore()
+  }
+
+  ctx.restore()
+}
+
+/**
  * Panggil generator motif yang sesuai
  */
 export function renderMotifLayer(
@@ -398,5 +515,9 @@ export function renderMotifLayer(
     case 'merah-putih-ridge':
       renderMerahPutihRidge(ctx, width, height, layer)
       break
+    case 'meteor-shower':
+      renderMeteorShower(ctx, width, height, layer)
+      break
   }
 }
+

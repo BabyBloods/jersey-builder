@@ -752,6 +752,7 @@ const PRESET_WARNA_DASAR = [
 ]
 
 const MOTIF_OPTIONS: Array<{ id: MotifType; label: string }> = [
+  { id: 'meteor-shower', label: 'Meteor Shower (Bintang Kosmik)' },
   { id: 'contour-peak', label: 'Contour Peak (Topografi)' },
   { id: 'fuji-ridge', label: 'Fuji Ridge (Punggungan)' },
   { id: 'mocha-dust', label: 'Mocha Dust (Debu Trail)' },
